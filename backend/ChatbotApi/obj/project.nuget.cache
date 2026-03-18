@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "ApEwSqI7RhY=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\juana\\webs\\website-chatbot\\backend\\ChatbotApi\\ChatbotApi.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\juana\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.14\\microsoft.aspnetcore.openapi.9.0.14.nupkg.sha512",
+    "C:\\Users\\juana\\.nuget\\packages\\microsoft.openapi\\1.6.17\\microsoft.openapi.1.6.17.nupkg.sha512"
+  ],
+  "logs": []
+}
