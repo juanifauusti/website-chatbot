@@ -1,73 +1,56 @@
 ﻿using Microsoft.Extensions.Configuration;
 using System.Net.Http.Json;
 using System.Text.Json;
-using EmbeddingGenerator;
 
+// 1. Configuración y HttpClient único
 var config = new ConfigurationBuilder().AddUserSecrets<Program>().Build();
-var apiKey = config["Google:ApiKey"];
+var apiKey = config["Cohere:ApiKey"];
 
-if (string.IsNullOrEmpty(apiKey))
-{
-    Console.WriteLine("Error: No se encontro la apiKey");
-    return;
-}
+if (string.IsNullOrEmpty(apiKey)) return;
 
+using var http = new HttpClient();
+http.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", apiKey);
+
+// 2. Carga y Limpieza de Chunks
 var text = await File.ReadAllTextAsync("siteContent.txt");
+var chunks = text.Split(new[] { "---" }, StringSplitOptions.RemoveEmptyEntries)
+                 .Select(c => c.Trim())
+                 .Where(c => !string.IsNullOrEmpty(c))
+                 .ToList();
 
-var chunks = text.Split(
-    new[] { "\n\n", "---" },
-    StringSplitOptions.RemoveEmptyEntries
-).Select(c => c.Trim()).Where(c => !string.IsNullOrEmpty(c));
+Console.WriteLine($"Procesando {chunks.Count} secciones...");
 
-var http = new HttpClient();
-var documents = new List<DocumentChunk>();
-
-foreach (var chunk in chunks)
+// 3. Envío en BATCH (Mucho más rápido que uno por uno)
+var request = new
 {
-    var request = new
+    model = "embed-multilingual-v3.0",
+    texts = chunks, // Enviamos la lista completa
+    input_type = "search_document"
+};
+
+var response = await http.PostAsJsonAsync("https://api.cohere.ai/v1/embed", request);
+
+if (response.IsSuccessStatusCode)
+{
+    var resData = await response.Content.ReadFromJsonAsync<JsonElement>();
+    var embeddingsArray = resData.GetProperty("embeddings");
+
+    var finalDocuments = new List<object>();
+
+    for (int i = 0; i < chunks.Count; i++)
     {
-        model = "models/gemini-embedding-001",
-        content = new
+        finalDocuments.Add(new
         {
-            parts = new[] { new { text = chunk } }
-        }
-    };
-
-    var response = await http.PostAsJsonAsync(
-$"https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-001:embedContent?key={apiKey}", request
-    );
-
-    var json = await response.Content.ReadAsStringAsync();
-
-    if (!response.IsSuccessStatusCode)
-    {
-        Console.WriteLine($"Error de la API ({response.StatusCode}):");
-        Console.WriteLine(json);
-        return;
-    }
-
-    using var doc = JsonDocument.Parse(json);
-
-    if (doc.RootElement.TryGetProperty("embedding", out var embeddingElement))
-    {
-        var values = embeddingElement
-            .GetProperty("values")
-            .EnumerateArray()
-            .Select(v => v.GetSingle())
-            .ToArray();
-
-        documents.Add(new DocumentChunk
-        {
-            Text = chunk,
-            Embedding = values
+            Text = chunks[i],
+            Embedding = embeddingsArray[i].EnumerateArray().Select(v => v.GetSingle()).ToArray()
         });
     }
-    else
-    {
-        Console.WriteLine("⚠️ La respuesta no contiene 'embedding'. JSON recibido:");
-        Console.WriteLine(json);
-    }
-}
 
-var output = JsonSerializer.Serialize(documents);
-await File.WriteAllTextAsync("embeddings.json", output);
+    var jsonResult = JsonSerializer.Serialize(finalDocuments, new JsonSerializerOptions { WriteIndented = true });
+    await File.WriteAllTextAsync("embeddings.json", jsonResult);
+    Console.WriteLine("✅ embeddings.json generado exitosamente en una sola ráfaga.");
+}
+else
+{
+    Console.WriteLine($"❌ Error: {await response.Content.ReadAsStringAsync()}");
+}
