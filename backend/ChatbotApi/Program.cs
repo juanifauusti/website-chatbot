@@ -5,12 +5,24 @@ using System.Net.Http.Headers;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyMethod()
+              .AllowAnyHeader();
+    });
+});
+
 builder.Services.AddHttpClient("CohereClient", client =>
 {
     client.Timeout = TimeSpan.FromSeconds(100);
 });
 
 var app = builder.Build();
+
+app.UseCors("AllowAll");
 
 var jsonContent = File.ReadAllText("embeddings.json");
 var embeddings = JsonSerializer.Deserialize<List<DocumentChunk>>(jsonContent, new JsonSerializerOptions { PropertyNameCaseInsensitive = true }) ?? new();
@@ -71,7 +83,7 @@ app.MapPost("/chat", async (ChatRequest req, IHttpClientFactory clientFactory) =
         {
             model = "command-r-08-2024",
             message = req.Message,
-            max_tokens = 300, 
+            max_tokens = 300,
             documents = new[] {
         new { title = "Contexto", snippet = textoRecortado }
     },

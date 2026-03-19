@@ -2,7 +2,6 @@
 using System.Net.Http.Json;
 using System.Text.Json;
 
-// 1. Configuración y HttpClient único
 var config = new ConfigurationBuilder().AddUserSecrets<Program>().Build();
 var apiKey = config["Cohere:ApiKey"];
 
@@ -11,7 +10,6 @@ if (string.IsNullOrEmpty(apiKey)) return;
 using var http = new HttpClient();
 http.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", apiKey);
 
-// 2. Carga y Limpieza de Chunks
 var text = await File.ReadAllTextAsync("siteContent.txt");
 var chunks = text.Split(new[] { "---" }, StringSplitOptions.RemoveEmptyEntries)
                  .Select(c => c.Trim())
@@ -20,11 +18,10 @@ var chunks = text.Split(new[] { "---" }, StringSplitOptions.RemoveEmptyEntries)
 
 Console.WriteLine($"Procesando {chunks.Count} secciones...");
 
-// 3. Envío en BATCH (Mucho más rápido que uno por uno)
 var request = new
 {
     model = "embed-multilingual-v3.0",
-    texts = chunks, // Enviamos la lista completa
+    texts = chunks, 
     input_type = "search_document"
 };
 
