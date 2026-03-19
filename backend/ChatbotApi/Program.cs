@@ -2,6 +2,8 @@ using System.Text.Json;
 using ChatbotApi.Models;
 using Microsoft.Extensions.Configuration;
 using System.Net.Http.Headers;
+using Npgsql;
+using System.Net.Http.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,9 +11,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", policy =>
     {
-        policy.AllowAnyOrigin()
-              .AllowAnyMethod()
-              .AllowAnyHeader();
+        policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
     });
 });
 
@@ -21,43 +21,16 @@ builder.Services.AddHttpClient("CohereClient", client =>
 });
 
 var app = builder.Build();
-
 app.UseCors("AllowAll");
 
-var jsonContent = File.ReadAllText("embeddings.json");
-var embeddings = JsonSerializer.Deserialize<List<DocumentChunk>>(jsonContent, new JsonSerializerOptions { PropertyNameCaseInsensitive = true }) ?? new();
-
-double CosineSimilarity(float[] a, float[] b)
-{
-    double dot = 0, magA = 0, magB = 0;
-    for (int i = 0; i < a.Length; i++)
-    {
-        dot += a[i] * b[i];
-        magA += a[i] * a[i];
-        magB += b[i] * b[i];
-    }
-    var denominator = Math.Sqrt(magA) * Math.Sqrt(magB);
-    return denominator == 0 ? 0 : dot / denominator;
-}
-
-DocumentChunk FindBestMatch(float[] queryVector)
-{
-    var match = embeddings
-        .Select(d => new { Chunk = d, Score = CosineSimilarity(queryVector, d.Embedding) })
-        .OrderByDescending(x => x.Score)
-        .First();
-
-    Console.WriteLine($"--- Similitud hallada: {match.Score:P2} ---");
-    return match.Chunk;
-}
-
-app.MapPost("/chat", async (ChatRequest req, IHttpClientFactory clientFactory) =>
+app.MapPost("/chat", async (ChatRequest req, IHttpClientFactory clientFactory, IConfiguration config) =>
 {
     try
     {
-        if (string.IsNullOrEmpty(req.Message)) return Results.BadRequest("El mensaje está vacío.");
+        if (string.IsNullOrEmpty(req.Message)) return Results.BadRequest("Mensaje vacío.");
 
-        var apiKey = app.Configuration["Cohere:ApiKey"];
+        var apiKey = config["Cohere:ApiKey"];
+        var connectionString = config.GetConnectionString("Supabase");
         var http = clientFactory.CreateClient("CohereClient");
         http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiKey);
 
@@ -68,46 +41,84 @@ app.MapPost("/chat", async (ChatRequest req, IHttpClientFactory clientFactory) =
             input_type = "search_query"
         });
 
-        if (!embRes.IsSuccessStatusCode) return Results.Problem("Error en Embeddings.");
+        if (!embRes.IsSuccessStatusCode) return Results.Problem("Error al generar embedding.");
 
         var embData = await embRes.Content.ReadFromJsonAsync<JsonElement>();
-        var queryVector = embData.GetProperty("embeddings")[0].EnumerateArray().Select(v => v.GetSingle()).ToArray();
+        var queryVector = embData.GetProperty("embeddings")[0].EnumerateArray()
+                                 .Select(v => v.GetSingle())
+                                 .ToArray();
 
-        var bestMatch = FindBestMatch(queryVector);
+        string bestContext = "";
+        using (var conn = new NpgsqlConnection(connectionString))
+        {
+            await conn.OpenAsync();
 
-        var textoRecortado = bestMatch.Text.Length > 2000
-    ? bestMatch.Text.Substring(0, 2000)
-    : bestMatch.Text;
+            const string sql = @"
+                SELECT content 
+                FROM doc_contents 
+                WHERE site_id = @sid 
+                ORDER BY embedding <=> @vec::vector 
+                LIMIT 2";
+
+            using var cmd = new NpgsqlCommand(sql, conn);
+            cmd.Parameters.AddWithValue("sid", req.SiteId ?? "porlasfamilias");
+            cmd.Parameters.AddWithValue("vec", queryVector);
+
+            using var reader = await cmd.ExecuteReaderAsync();
+            while (await reader.ReadAsync())
+            {
+                bestContext += reader.GetString(0) + "\n---\n";
+            }
+        }
 
         var chatReq = new
         {
             model = "command-r-08-2024",
             message = req.Message,
-            max_tokens = 300,
-            documents = new[] {
-        new { title = "Contexto", snippet = textoRecortado }
-    },
-            preamble = "Responde de forma breve y directa usando el contexto."
+            documents = !string.IsNullOrEmpty(bestContext)
+                ? new[] { new { title = "Información del Sitio", text = bestContext } }
+                : null,
+            preamble = "Eres un asistente amable de 'Por las Familias'. Usa el contexto para responder de forma profesional."
         };
 
         var chatRes = await http.PostAsJsonAsync("https://api.cohere.ai/v1/chat", chatReq);
 
-        var resBody = await chatRes.Content.ReadAsStringAsync();
-
         if (!chatRes.IsSuccessStatusCode)
         {
-            Console.WriteLine($"--- ERROR DE COHERE API ---");
-            Console.WriteLine(resBody);
-            return Results.Problem("La IA devolvió un error: " + chatRes.StatusCode);
+            var errorBody = await chatRes.Content.ReadAsStringAsync();
+            Console.WriteLine($"❌ Error de Cohere API: {errorBody}");
+            return Results.Problem("Cohere no pudo procesar la solicitud.");
         }
 
-        var chatData = JsonSerializer.Deserialize<JsonElement>(resBody);
-        return Results.Ok(new { answer = chatData.GetProperty("text").GetString() });
+        using var chatDoc = await chatRes.Content.ReadFromJsonAsync<JsonDocument>();
+        var root = chatDoc.RootElement;
+        string answer = "";
+
+        if (root.TryGetProperty("text", out var textProp))
+        {
+            answer = textProp.GetString() ?? "";
+        }
+        else if (root.TryGetProperty("answer", out var answerProp))
+        {
+            answer = answerProp.GetString() ?? "";
+        }
+        else
+        {
+            Console.WriteLine($"⚠️ Estructura de JSON desconocida: {root.GetRawText()}");
+        }
+
+        if (string.IsNullOrEmpty(answer))
+        {
+            return Results.Ok(new { answer = "Lo siento, no pude generar una respuesta. Por favor, intenta de nuevo." });
+        }
+
+        return Results.Ok(new { answer });
     }
     catch (Exception ex)
     {
-        Console.WriteLine($"❌ Error: {ex.Message}");
-        return Results.Problem("Error interno del servidor.");
+        Console.WriteLine($"🔥 Error Crítico en /chat: {ex.Message}");
+        Console.WriteLine(ex.StackTrace);
+        return Results.Problem("Hubo un error interno al procesar tu pregunta.");
     }
 });
 

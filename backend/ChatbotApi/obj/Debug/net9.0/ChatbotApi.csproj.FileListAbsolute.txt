@@ -9,6 +9,7 @@ C:\Users\juana\webs\website-chatbot\backend\ChatbotApi\obj\Debug\net9.0\ChatbotA
 C:\Users\juana\webs\website-chatbot\backend\ChatbotApi\obj\Debug\net9.0\ChatbotApi.sourcelink.json
 C:\Users\juana\webs\website-chatbot\backend\ChatbotApi\bin\Debug\net9.0\appsettings.Development.json
 C:\Users\juana\webs\website-chatbot\backend\ChatbotApi\bin\Debug\net9.0\appsettings.json
+C:\Users\juana\webs\website-chatbot\backend\ChatbotApi\bin\Debug\net9.0\embeddings.json
 C:\Users\juana\webs\website-chatbot\backend\ChatbotApi\bin\Debug\net9.0\ChatbotApi.staticwebassets.endpoints.json
 C:\Users\juana\webs\website-chatbot\backend\ChatbotApi\bin\Debug\net9.0\ChatbotApi.exe
 C:\Users\juana\webs\website-chatbot\backend\ChatbotApi\bin\Debug\net9.0\ChatbotApi.deps.json
@@ -16,7 +17,13 @@ C:\Users\juana\webs\website-chatbot\backend\ChatbotApi\bin\Debug\net9.0\ChatbotA
 C:\Users\juana\webs\website-chatbot\backend\ChatbotApi\bin\Debug\net9.0\ChatbotApi.dll
 C:\Users\juana\webs\website-chatbot\backend\ChatbotApi\bin\Debug\net9.0\ChatbotApi.pdb
 C:\Users\juana\webs\website-chatbot\backend\ChatbotApi\bin\Debug\net9.0\Microsoft.AspNetCore.OpenApi.dll
+C:\Users\juana\webs\website-chatbot\backend\ChatbotApi\bin\Debug\net9.0\Microsoft.Extensions.Configuration.dll
+C:\Users\juana\webs\website-chatbot\backend\ChatbotApi\bin\Debug\net9.0\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\juana\webs\website-chatbot\backend\ChatbotApi\bin\Debug\net9.0\Microsoft.Extensions.Configuration.EnvironmentVariables.dll
+C:\Users\juana\webs\website-chatbot\backend\ChatbotApi\bin\Debug\net9.0\Microsoft.Extensions.Primitives.dll
 C:\Users\juana\webs\website-chatbot\backend\ChatbotApi\bin\Debug\net9.0\Microsoft.OpenApi.dll
+C:\Users\juana\webs\website-chatbot\backend\ChatbotApi\bin\Debug\net9.0\Npgsql.dll
+C:\Users\juana\webs\website-chatbot\backend\ChatbotApi\bin\Debug\net9.0\Pgvector.dll
 C:\Users\juana\webs\website-chatbot\backend\ChatbotApi\obj\Debug\net9.0\rjimswa.dswa.cache.json
 C:\Users\juana\webs\website-chatbot\backend\ChatbotApi\obj\Debug\net9.0\rjsmrazor.dswa.cache.json
 C:\Users\juana\webs\website-chatbot\backend\ChatbotApi\obj\Debug\net9.0\rjsmcshtml.dswa.cache.json
@@ -31,4 +38,3 @@ C:\Users\juana\webs\website-chatbot\backend\ChatbotApi\obj\Debug\net9.0\refint\C
 C:\Users\juana\webs\website-chatbot\backend\ChatbotApi\obj\Debug\net9.0\ChatbotApi.pdb
 C:\Users\juana\webs\website-chatbot\backend\ChatbotApi\obj\Debug\net9.0\ChatbotApi.genruntimeconfig.cache
 C:\Users\juana\webs\website-chatbot\backend\ChatbotApi\obj\Debug\net9.0\ref\ChatbotApi.dll
-C:\Users\juana\webs\website-chatbot\backend\ChatbotApi\bin\Debug\net9.0\embeddings.json

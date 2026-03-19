@@ -1,11 +1,19 @@
 {
   "version": 2,
-  "dgSpecHash": "ApEwSqI7RhY=",
+  "dgSpecHash": "QJEsQPSTZ1k=",
   "success": true,
   "projectFilePath": "C:\\Users\\juana\\webs\\website-chatbot\\backend\\ChatbotApi\\ChatbotApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\juana\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.14\\microsoft.aspnetcore.openapi.9.0.14.nupkg.sha512",
-    "C:\\Users\\juana\\.nuget\\packages\\microsoft.openapi\\1.6.17\\microsoft.openapi.1.6.17.nupkg.sha512"
+    "C:\\Users\\juana\\.nuget\\packages\\microsoft.extensions.configuration\\10.0.5\\microsoft.extensions.configuration.10.0.5.nupkg.sha512",
+    "C:\\Users\\juana\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\10.0.5\\microsoft.extensions.configuration.abstractions.10.0.5.nupkg.sha512",
+    "C:\\Users\\juana\\.nuget\\packages\\microsoft.extensions.configuration.environmentvariables\\10.0.5\\microsoft.extensions.configuration.environmentvariables.10.0.5.nupkg.sha512",
+    "C:\\Users\\juana\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\9.0.0\\microsoft.extensions.dependencyinjection.abstractions.9.0.0.nupkg.sha512",
+    "C:\\Users\\juana\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\9.0.0\\microsoft.extensions.logging.abstractions.9.0.0.nupkg.sha512",
+    "C:\\Users\\juana\\.nuget\\packages\\microsoft.extensions.primitives\\10.0.5\\microsoft.extensions.primitives.10.0.5.nupkg.sha512",
+    "C:\\Users\\juana\\.nuget\\packages\\microsoft.openapi\\1.6.17\\microsoft.openapi.1.6.17.nupkg.sha512",
+    "C:\\Users\\juana\\.nuget\\packages\\npgsql\\10.0.2\\npgsql.10.0.2.nupkg.sha512",
+    "C:\\Users\\juana\\.nuget\\packages\\pgvector\\0.3.2\\pgvector.0.3.2.nupkg.sha512"
   ],
   "logs": []
 }

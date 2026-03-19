@@ -8,7 +8,10 @@
     ".NETCoreApp,Version=v9.0": {
       "ChatbotApi/1.0.0": {
         "dependencies": {
-          "Microsoft.AspNetCore.OpenApi": "9.0.14"
+          "Microsoft.AspNetCore.OpenApi": "9.0.14",
+          "Microsoft.Extensions.Configuration.EnvironmentVariables": "10.0.5",
+          "Npgsql": "10.0.2",
+          "Pgvector": "0.3.2"
         },
         "runtime": {
           "ChatbotApi.dll": {}
@@ -25,11 +28,82 @@
           }
         }
       },
+      "Microsoft.Extensions.Configuration/10.0.5": {
+        "dependencies": {
+          "Microsoft.Extensions.Configuration.Abstractions": "10.0.5",
+          "Microsoft.Extensions.Primitives": "10.0.5"
+        },
+        "runtime": {
+          "lib/net9.0/Microsoft.Extensions.Configuration.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.526.15411"
+          }
+        }
+      },
+      "Microsoft.Extensions.Configuration.Abstractions/10.0.5": {
+        "dependencies": {
+          "Microsoft.Extensions.Primitives": "10.0.5"
+        },
+        "runtime": {
+          "lib/net9.0/Microsoft.Extensions.Configuration.Abstractions.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.526.15411"
+          }
+        }
+      },
+      "Microsoft.Extensions.Configuration.EnvironmentVariables/10.0.5": {
+        "dependencies": {
+          "Microsoft.Extensions.Configuration": "10.0.5",
+          "Microsoft.Extensions.Configuration.Abstractions": "10.0.5"
+        },
+        "runtime": {
+          "lib/net9.0/Microsoft.Extensions.Configuration.EnvironmentVariables.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.526.15411"
+          }
+        }
+      },
+      "Microsoft.Extensions.DependencyInjection.Abstractions/9.0.0": {},
+      "Microsoft.Extensions.Logging.Abstractions/9.0.0": {
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.0"
+        }
+      },
+      "Microsoft.Extensions.Primitives/10.0.5": {
+        "runtime": {
+          "lib/net9.0/Microsoft.Extensions.Primitives.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.526.15411"
+          }
+        }
+      },
       "Microsoft.OpenApi/1.6.17": {
         "runtime": {
           "lib/netstandard2.0/Microsoft.OpenApi.dll": {
             "assemblyVersion": "1.6.17.0",
             "fileVersion": "1.6.17.0"
+          }
+        }
+      },
+      "Npgsql/10.0.2": {
+        "dependencies": {
+          "Microsoft.Extensions.Logging.Abstractions": "9.0.0"
+        },
+        "runtime": {
+          "lib/net9.0/Npgsql.dll": {
+            "assemblyVersion": "10.0.2.0",
+            "fileVersion": "10.0.2.0"
+          }
+        }
+      },
+      "Pgvector/0.3.2": {
+        "dependencies": {
+          "Npgsql": "10.0.2"
+        },
+        "runtime": {
+          "lib/net6.0/Pgvector.dll": {
+            "assemblyVersion": "0.3.2.0",
+            "fileVersion": "0.3.2.0"
           }
         }
       }
@@ -48,12 +122,68 @@
       "path": "microsoft.aspnetcore.openapi/9.0.14",
       "hashPath": "microsoft.aspnetcore.openapi.9.0.14.nupkg.sha512"
     },
+    "Microsoft.Extensions.Configuration/10.0.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-8Rx5sqg04FttxrumyG6bmoRuFRgYzK6IVwF1i0/o0cXfKBdDeVpJejKHtJCMjyg9E/DNMVqpqOGe/tCT5gYvVA==",
+      "path": "microsoft.extensions.configuration/10.0.5",
+      "hashPath": "microsoft.extensions.configuration.10.0.5.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Configuration.Abstractions/10.0.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-P09QpTHjqHmCLQOTC+WyLkoRNxek4NIvfWt+TnU0etoDUSRxcltyd6+j/ouRbMdLR0j44GqGO+lhI2M4fAHG4g==",
+      "path": "microsoft.extensions.configuration.abstractions/10.0.5",
+      "hashPath": "microsoft.extensions.configuration.abstractions.10.0.5.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Configuration.EnvironmentVariables/10.0.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-tchMGQ+zVTO40np/Zzg2Li/TIR8bksQgg4UVXZa0OzeFCKWnIYtxE2FVs+eSmjPGCjMS2voZbwN/mUcYfpSTuA==",
+      "path": "microsoft.extensions.configuration.environmentvariables/10.0.5",
+      "hashPath": "microsoft.extensions.configuration.environmentvariables.10.0.5.nupkg.sha512"
+    },
+    "Microsoft.Extensions.DependencyInjection.Abstractions/9.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-+6f2qv2a3dLwd5w6JanPIPs47CxRbnk+ZocMJUhv9NxP88VlOcJYZs9jY+MYSjxvady08bUZn6qgiNh7DadGgg==",
+      "path": "microsoft.extensions.dependencyinjection.abstractions/9.0.0",
+      "hashPath": "microsoft.extensions.dependencyinjection.abstractions.9.0.0.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Logging.Abstractions/9.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-g0UfujELzlLbHoVG8kPKVBaW470Ewi+jnptGS9KUi6jcb+k2StujtK3m26DFSGGwQ/+bVgZfsWqNzlP6YOejvw==",
+      "path": "microsoft.extensions.logging.abstractions/9.0.0",
+      "hashPath": "microsoft.extensions.logging.abstractions.9.0.0.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Primitives/10.0.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-/HUHJ0tw/LQvD0DZrz50eQy/3z7PfX7WWEaXnjKTV9/TNdcgFlNTZGo49QhS7PTmhDqMyHRMqAXSBxLh0vso4g==",
+      "path": "microsoft.extensions.primitives/10.0.5",
+      "hashPath": "microsoft.extensions.primitives.10.0.5.nupkg.sha512"
+    },
     "Microsoft.OpenApi/1.6.17": {
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-Le+kehlmrlQfuDFUt1zZ2dVwrhFQtKREdKBo+rexOwaCoYP0/qpgT9tLxCsZjsgR5Itk1UKPcbgO+FyaNid/bA==",
       "path": "microsoft.openapi/1.6.17",
       "hashPath": "microsoft.openapi.1.6.17.nupkg.sha512"
+    },
+    "Npgsql/10.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-q5RfBI+wywJSFUNDE1L4ZbHEHCFTblo8Uf6A6oe4feOUFYiUQXyAf9GBh5qEZpvJaHiEbpBPkQumjEhXCJxdrg==",
+      "path": "npgsql/10.0.2",
+      "hashPath": "npgsql.10.0.2.nupkg.sha512"
+    },
+    "Pgvector/0.3.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-n7M5LuNejHUmtWky3zCbNO+tP1Gnjiuv9Qtu4LyvB1602dD8RiBxxCQp9jEjM0ZFDxAZF1oOWkNIkXw46KT00Q==",
+      "path": "pgvector/0.3.2",
+      "hashPath": "pgvector.0.3.2.nupkg.sha512"
     }
   }
 }

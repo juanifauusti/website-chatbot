@@ -30,3 +30,7 @@ C:\Users\juana\webs\website-chatbot\embeddings\EmbeddingGenerator\obj\Debug\net9
 C:\Users\juana\webs\website-chatbot\embeddings\EmbeddingGenerator\obj\Debug\net9.0\EmbeddingGenerator.pdb
 C:\Users\juana\webs\website-chatbot\embeddings\EmbeddingGenerator\obj\Debug\net9.0\EmbeddingGenerator.genruntimeconfig.cache
 C:\Users\juana\webs\website-chatbot\embeddings\EmbeddingGenerator\obj\Debug\net9.0\ref\EmbeddingGenerator.dll
+C:\Users\juana\webs\website-chatbot\embeddings\EmbeddingGenerator\bin\Debug\net9.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\juana\webs\website-chatbot\embeddings\EmbeddingGenerator\bin\Debug\net9.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\juana\webs\website-chatbot\embeddings\EmbeddingGenerator\bin\Debug\net9.0\Npgsql.dll
+C:\Users\juana\webs\website-chatbot\embeddings\EmbeddingGenerator\bin\Debug\net9.0\Microsoft.Extensions.Configuration.EnvironmentVariables.dll

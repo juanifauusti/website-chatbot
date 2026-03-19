@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("EmbeddingGenerator")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+de9d4dc219652302fda1efea1794fc84b323bebd")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ff3afeb909ba7dd247e6bb9ac19e3a12e4fc77dd")]
 [assembly: System.Reflection.AssemblyProductAttribute("EmbeddingGenerator")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EmbeddingGenerator")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
