@@ -7,11 +7,17 @@ using System.Net.Http.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var allowedOrigins = new[]
+{
+    "https://website-chatbot-juana.vercel.app",
+    "http://localhost:5193"
+};
+
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAll", policy =>
+    options.AddPolicy("MultiSitePolicy", policy =>
     {
-        policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+        policy.WithOrigins(allowedOrigins).AllowAnyMethod().AllowAnyHeader();
     });
 });
 
@@ -21,7 +27,8 @@ builder.Services.AddHttpClient("CohereClient", client =>
 });
 
 var app = builder.Build();
-app.UseCors("AllowAll");
+
+app.UseCors("MultiSitePoliciy");
 
 app.MapPost("/chat", async (ChatRequest req, IHttpClientFactory clientFactory, IConfiguration config) =>
 {
