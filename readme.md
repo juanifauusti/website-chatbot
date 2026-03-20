@@ -4,7 +4,7 @@ Chatbot para sitios web basado en **RAG (Retrieval Augmented Generation)**.
 Permite responder preguntas utilizando contenido específico mediante búsqueda semántica e integración con modelos de IA.
 
 ```markdown
-🔗 Demo: https://tu-demo.vercel.app
+🔗 Demo: https://website-chatbot-juana.vercel.app
 
 ---
 
