@@ -7,17 +7,36 @@
   const button = document.createElement("button");
   button.innerHTML = "💬";
   Object.assign(button.style, {
-    position: "fixed", bottom: "20px", right: "20px", width: "60px", height: "60px",
-    borderRadius: "50%", background: "#4f46e5", color: "white", border: "none",
-    fontSize: "24px", cursor: "pointer", boxShadow: "0 4px 12px rgba(0,0,0,0.2)", zIndex: "10000"
+    position: "fixed",
+    bottom: "20px",
+    right: "20px",
+    width: "60px",
+    height: "60px",
+    borderRadius: "50%",
+    background: "#4f46e5",
+    color: "white",
+    border: "none",
+    fontSize: "24px",
+    cursor: "pointer",
+    boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
+    zIndex: "10000",
   });
 
   const chatBox = document.createElement("div");
   Object.assign(chatBox.style, {
-    position: "fixed", bottom: "90px", right: "20px", width: "350px", height: "450px",
-    background: "white", borderRadius: "12px", display: "none", flexDirection: "column",
-    boxShadow: "0 8px 24px rgba(0,0,0,0.2)", zIndex: "10000", overflow: "hidden",
-    fontFamily: "'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
+    position: "fixed",
+    bottom: "90px",
+    right: "20px",
+    width: "350px",
+    height: "450px",
+    background: "white",
+    borderRadius: "12px",
+    display: "none",
+    flexDirection: "column",
+    boxShadow: "0 8px 24px rgba(0,0,0,0.2)",
+    zIndex: "10000",
+    overflow: "hidden",
+    fontFamily: "'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
   });
 
   chatBox.innerHTML = `
@@ -52,8 +71,8 @@
     chatBox.style.display = chatBox.style.display === "none" ? "flex" : "none";
     if (chatBox.style.display === "flex") inputField.focus();
   };
-  
-  closeBtn.onclick = () => chatBox.style.display = "none";
+
+  closeBtn.onclick = () => (chatBox.style.display = "none");
 
   const sendMessage = async () => {
     const text = inputField.value.trim();
@@ -77,7 +96,10 @@
       const res = await fetch(API_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ Message: text, SiteId: siteId })
+        body: JSON.stringify({
+          Message: text, 
+          SiteId: siteId,
+        }),
       });
 
       if (!res.ok) throw new Error("Error en servidor");

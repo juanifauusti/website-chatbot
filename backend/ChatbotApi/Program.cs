@@ -82,7 +82,7 @@ app.MapPost("/chat", async (ChatRequest req, IHttpClientFactory clientFactory, I
                "REGLAS CRÍTICAS: " +
                "1. Solo usa la información proporcionada en los documentos. " +
                "2. Si la información no está, di que no sabes y sugiere contactar a la empresa. " +
-               "3. No inventes datos sobre ubicaciones ni servicios. " +
+               "3. NO inventes datos fuera del texto. " +
                "4. Tus respuestas deben ser BREVES (máximo 2 o 3 oraciones). " +
                "5. Responde siempre en español."
         };
