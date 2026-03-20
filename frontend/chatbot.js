@@ -1,7 +1,7 @@
 (function () {
   const API_URL = "https://website-chatbot-nmfp.onrender.com/chat";
   const scriptTag = document.currentScript;
-  const siteId = scriptTag?.getAttribute("data-site-id") || "demo-portfolio";
+  const siteId = scriptTag?.getAttribute("data-site-id");
 
   const button = document.createElement("button");
   button.innerHTML = "💬";
