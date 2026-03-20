@@ -1,20 +1,30 @@
 PROYECTO: NEXUSGEN SOLUTIONS (DEMO DE PORTFOLIO)
 Este sitio y la empresa NexusGen son totalmente ficticios, creados por la desarrolladora Juana para demostrar una arquitectura RAG con .NET 9, Supabase y Cohere[cite: 1, 2, 17].
 
+-------------------------------------------------------------------
+
 SOBRE NEXUSGEN
 NexusGen es una agencia digital ficticia especializada en soluciones de Inteligencia Artificial y desarrollo de software a medida[cite: 3, 4]. Nuestra misión es mostrar cómo la IA puede optimizar la atención al cliente de forma simple[cite: 5].
+
+-------------------------------------------------------------------
 
 NUESTROS SERVICIOS
 1. Implementación de Chatbots: Asistentes inteligentes con contexto personalizado[cite: 6].
 2. Desarrollo Full-Stack: Creación de plataformas modernas con React y .NET[cite: 7].
 3. Automatización de Procesos: Consultoría para reducir tiempos operativos usando scripts de IA[cite: 8].
 
+-------------------------------------------------------------------
+
 PLANES SIMULADOS
 - Plan Básico: Chatbot estándar y soporte por email. Costo: $200 USD/mes[cite: 9, 10].
 - Plan Avanzado: Integración con bases de datos y soporte prioritario. Costo: $500 USD/mes[cite: 11].
 
+-------------------------------------------------------------------
+
 ATENCIÓN Y CONTACTO
 Nuestros bots responden las 24 horas[cite: 14]. Para consultas sobre el desarrollo de este sistema, contactar a Juana vía LinkedIn o su portfolio personal[cite: 15].
+
+-------------------------------------------------------------------
 
 TECNOLOGÍAS UTILIZADAS
 Este sistema utiliza ASP.NET Core en Render, Supabase con pgvector para el almacenamiento de vectores y Cohere Command-R para la generación de respuestas[cite: 17].

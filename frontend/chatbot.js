@@ -1,5 +1,4 @@
 (function () {
-  // CONFIGURACIÓN
   const API_URL = "https://website-chatbot-nmfp.onrender.com/chat";
   const scriptTag = document.currentScript;
   const siteId = scriptTag?.getAttribute("data-site-id") || "demo-portfolio";
@@ -41,7 +40,7 @@
 
   chatBox.innerHTML = `
     <div style="background:#4f46e5; color:white; padding:15px; font-weight:bold; display:flex; justify-content:space-between; align-items:center;">
-        <span>Asistente NovaTech</span>
+        <span>Asistente</span>
         <span id="close-chat" style="cursor:pointer; font-size:20px;">×</span>
     </div>
     <div id="messages" style="flex:1; padding:15px; overflow-y:auto; background:#f9fafb; display:flex; flex-direction:column; gap:10px;">

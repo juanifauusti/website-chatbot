@@ -71,20 +71,23 @@ app.MapPost("/chat", async (ChatRequest req, IHttpClientFactory clientFactory, I
             }
         }
 
+        string nombreEmpresa = req.SiteId?.Replace("-", " ").ToUpper() ?? "el sitio";
+
         var chatReq = new
         {
             model = "command-r-08-2024",
             message = req.Message,
             documents = !string.IsNullOrEmpty(bestContext)
-        ? new[] { new { title = "Información del Sitio", text = bestContext } }
+        ? new[] { new { title = $"Información de {nombreEmpresa}", text = bestContext } }
         : null,
-            preamble = "Eres un asistente virtual de NovaTech. " +
+            preamble = $"Eres el asistente virtual de {nombreEmpresa}. " +
+               "Tu objetivo es ayudar a los usuarios basándote ÚNICAMENTE en los documentos proporcionados. " +
                "REGLAS CRÍTICAS: " +
-               "1. Solo usa la información proporcionada en los documentos. " +
-               "2. Si la información no está, di que no sabes y sugiere contactar a la empresa. " +
-               "3. NO inventes datos fuera del texto. " +
-               "4. Tus respuestas deben ser BREVES (máximo 2 o 3 oraciones). " +
-               "5. Responde siempre en español."
+               "1. Usa UNICAMENTE la información de los documentos proporcionados. " +
+               "2. Si la respuesta no está en los documentos, di: 'Lo siento, no tengo información sobre eso'. " +
+               "3. NO utilices conocimiento externo sobre empresas reales o ubicaciones geográficas. " +
+               "4. Tus respuestas deben ser MUY BREVES (máximo 15-20 palabras). " +
+               "5. Mantén un tono neutral y profesional."
         };
 
         var chatRes = await http.PostAsJsonAsync("https://api.cohere.ai/v1/chat", chatReq);
