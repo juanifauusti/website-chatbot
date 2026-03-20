@@ -1,105 +1,24 @@
-POR LAS FAMILIAS
-
-Por las Familias es un equipo profesional dedicado al trabajo con problemáticas familiares desde una perspectiva interdisciplinaria.
-
-El equipo trabaja sobre los vínculos familiares y cómo estos influyen en el desarrollo cognitivo, emocional y social de las personas.
-
-El objetivo es fortalecer a las familias para que puedan desarrollar sus capacidades y afrontar las diferentes etapas de la vida.
-
+PROYECTO: NOVATECH SOLUTIONS (DEMO DE PORTFOLIO)
+Este sitio y la empresa descrita son totalmente ficticios. Fueron creados por Juana como una demostración técnica de integración de Inteligencia Artificial (RAG), .NET 9, Supabase y Cohere. Cualquier parecido con empresas reales es pura coincidencia.
 ---
-
-QUE HACEMOS
-
-En Por las Familias se trabaja acompañando a las familias en la búsqueda de soluciones a problemas vinculares y comunicacionales.
-
-Se analizan rupturas en la comunicación familiar y se diseñan intervenciones de orientación y acompañamiento.
-
-También se brindan estrategias y recursos para mejorar la dinámica familiar, así como capacitaciones para profesionales y docentes.
-
+SOBRE NOVATECH
+NovaTech es una agencia boutique de desarrollo de software y consultoría en Inteligencia Artificial. Nos especializamos en automatizar procesos empresariales mediante agentes de IA personalizados. Nuestra misión es demostrar cómo la tecnología puede simplificar la interacción entre humanos y sistemas complejos.
 ---
-
-QUE BUSCAMOS
-
-El objetivo del trabajo es fortalecer a las familias y promover relaciones basadas en el respeto y el diálogo.
-
-Se busca brindar apoyo y herramientas a los padres para afrontar situaciones familiares complejas.
-
-También se promueve la comunicación asertiva y la búsqueda de soluciones conjuntas frente a conflictos familiares.
-
+NUESTROS SERVICIOS
+1. Implementación de Chatbots Inteligentes: Creamos asistentes virtuales que realmente entienden el contexto del negocio.
+2. Desarrollo Full-Stack: Construimos aplicaciones web modernas utilizando tecnologías como React y .NET.
+3. Consultoría en Automatización: Analizamos flujos de trabajo para reducir tiempos operativos mediante scripts y herramientas de IA.
 ---
-
-COMO TRABAJAMOS
-
-El proceso comienza con una reunión con la familia en la que se escuchan todas las voces desde una posición profesional neutral.
-
-Luego se identifican las problemáticas, necesidades y preocupaciones de cada miembro de la familia.
-
-A partir de allí se desarrollan herramientas y estrategias para mejorar la comunicación, fortalecer los vínculos y resolver los conflictos.
-
-El trabajo se enfoca tanto en cada persona individualmente como en el sistema familiar completo.
-
+PRECIOS Y PLANES (SIMULADOS)
+- Plan Starter: Ideal para pequeñas empresas. Incluye un chatbot básico y soporte por email. Costo: $200 USD/mes.
+- Plan Pro: Incluye integración con bases de datos propias y soporte técnico prioritario. Costo: $500 USD/mes.
+- Plan Enterprise: Soluciones a medida con despliegue en servidores propios. Consultar para presupuesto personalizado.
 ---
-
-SERVICIO: FORTALECIMIENTO FAMILIAR
-
-Este servicio busca brindar sostén, apoyo y seguridad a los padres para la crianza de sus hijos en el contexto actual.
-
-Se trabajan temas como:
-- Rol parental
-- Acuerdos de crianza
-- Coparentalidad después de la separación
-- Monoparentalidad
-- Etapas del desarrollo de los hijos
-
-También se acompaña a las familias en crisis personales o familiares.
-
+HORARIOS DE ATENCIÓN
+Nuestra oficina virtual está disponible para consultas de lunes a viernes de 09:00 a 18:00 (Hora Argentina). Sin embargo, nuestros bots de IA están activos 24/7 para responder dudas básicas de clientes.
 ---
-
-SERVICIO: REORGANIZACION FAMILIAR
-
-Se brindan herramientas para afrontar cambios en la estructura familiar.
-
-Esto incluye situaciones como:
-- familias ensambladas
-- nuevas configuraciones familiares
-- convivencia intergeneracional
-- procesos de duelo o enfermedad
-
-El objetivo es ayudar a las familias a adaptarse a nuevas dinámicas vinculares.
-
+CONTACTO Y REDES
+Para consultas reales sobre la desarrolladora de este sistema, por favor contactar a Juana a través de su portfolio personal o LinkedIn. Para la demo de NovaTech, el formulario de contacto se encuentra en el pie de página de la landing page.
 ---
-
-SERVICIO: INTERVENCION EN EL AMBITO JUDICIAL
-
-Se trabaja como puente entre situaciones familiares complejas y procesos judiciales.
-
-Se brinda asesoramiento en:
-- conflictos parentales
-- familias en litigio
-- revinculación entre padres e hijos
-- asesoramiento técnico para abogados
-- evaluaciones psicológicas periciales
-
-El objetivo es proteger el bienestar emocional y psicológico de los miembros más vulnerables de la familia.
-
----
-
-SERVICIO: FAMILIA Y ESCUELA
-
-Se trabaja sobre la relación entre familias e instituciones educativas.
-
-Se ofrecen herramientas para mejorar la comunicación entre docentes y padres.
-
-También se realizan intervenciones familiares cuando las problemáticas familiares afectan el proceso educativo de los estudiantes.
-
-Se brindan capacitaciones y talleres para docentes y equipos directivos.
-
----
-
-EQUIPO PROFESIONAL
-
-El equipo está compuesto por profesionales especializados en orientación familiar, psicología y educación.
-
-Trabajan acompañando a familias, instituciones educativas y profesionales que intervienen en problemáticas familiares.
-
-El enfoque del equipo se basa en el fortalecimiento de los vínculos familiares, la comunicación y la resolución saludable de conflictos.
+TECNOLOGÍAS DE ESTA DEMO
+Este asistente utiliza un flujo RAG (Retrieval-Augmented Generation). La base de datos es Supabase (PostgreSQL con pgvector), el motor de inferencia es Cohere Command-R y el backend está desarrollado en ASP.NET Core hospedado en Render.

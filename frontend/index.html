@@ -1,83 +1,28 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chatbot Profesional</title>
-    <link rel="stylesheet" href="./style.css" />
-  </head>
+<head>
+    <meta charset="UTF-8">
+    <title>NovaTech - Soluciones Digitales</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">NovaTech</div>
+            <ul>
+                <li>Servicios</li>
+                <li>Precios</li>
+                <li>Contacto</li>
+            </ul>
+        </nav>
+    </header>
 
-  <body>
-    <button id="chat-button" onclick="toggleChat()" aria-label="Abrir chat">
-      💬
-    </button>
+    <main class="hero">
+        <h1>Transformamos tu negocio con IA</h1>
+        <p>Probá nuestro asistente inteligente a la derecha. Está entrenado para responder todo sobre nuestros servicios.</p>
+        <button class="cta">Saber más</button>
+    </main>
 
-    <div id="chat-box">
-      <div class="chat-header">
-        <span>Asistente Virtual</span>
-      </div>
-
-      <div id="messages">
-        <div class="bot">¡Hola! ¿En qué puedo ayudarte hoy?</div>
-      </div>
-
-      <div id="input-area">
-        <input
-          id="input"
-          placeholder="Escribí un mensaje..."
-          autocomplete="off"
-        />
-        <button class="send" onclick="send()" title="Enviar">➤</button>
-      </div>
-    </div>
-
-    <script>
-      function toggleChat() {
-        const box = document.getElementById("chat-box");
-        box.style.display = box.style.display === "flex" ? "none" : "flex";
-      }
-
-      async function send() {
-        const input = document.getElementById("input");
-        const messages = document.getElementById("messages");
-        const text = input.value.trim();
-
-        if (!text) return;
-
-        messages.innerHTML += `<div class="user">${text}</div>`;
-        input.value = "";
-        messages.scrollTop = messages.scrollHeight;
-
-        const typingId = "typing-indicator";
-        const typingHtml = `
-    <div id="${typingId}" class="typing">
-      <span></span><span></span><span></span>
-    </div>`;
-        messages.insertAdjacentHTML("beforeend", typingHtml);
-        messages.scrollTop = messages.scrollHeight;
-
-        try {
-          const res = await fetch("http://localhost:5193/chat", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ message: text }),
-          });
-
-          const data = await res.json();
-
-          document.getElementById(typingId)?.remove();
-          messages.innerHTML += `<div class="bot">${data.answer}</div>`;
-        } catch (error) {
-          document.getElementById(typingId)?.remove();
-          messages.innerHTML += `<div class="bot">Error de conexión.</div>`;
-        }
-
-        messages.scrollTop = messages.scrollHeight;
-      }
-
-      document.getElementById("input").addEventListener("keypress", (e) => {
-        if (e.key === "Enter") send();
-      });
-    </script>
-  </body>
+    <script src="chatbot.js" data-site-id="novatech-demo"></script>
+</body>
 </html>

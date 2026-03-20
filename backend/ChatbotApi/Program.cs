@@ -76,9 +76,15 @@ app.MapPost("/chat", async (ChatRequest req, IHttpClientFactory clientFactory, I
             model = "command-r-08-2024",
             message = req.Message,
             documents = !string.IsNullOrEmpty(bestContext)
-                ? new[] { new { title = "Información del Sitio", text = bestContext } }
-                : null,
-            preamble = "Eres un asistente amable de 'Por las Familias'. Usa el contexto para responder de forma profesional."
+        ? new[] { new { title = "Información del Sitio", text = bestContext } }
+        : null,
+            preamble = "Eres un asistente virtual de NovaTech. " +
+               "REGLAS CRÍTICAS: " +
+               "1. Solo usa la información proporcionada en los documentos. " +
+               "2. Si la información no está, di que no sabes y sugiere contactar a la empresa. " +
+               "3. No inventes datos sobre ubicaciones ni servicios. " +
+               "4. Tus respuestas deben ser BREVES (máximo 2 o 3 oraciones). " +
+               "5. Responde siempre en español."
         };
 
         var chatRes = await http.PostAsJsonAsync("https://api.cohere.ai/v1/chat", chatReq);

@@ -11,7 +11,7 @@ var config = new ConfigurationBuilder()
 
 var supabaseConnString = config.GetConnectionString("Supabase");
 var apiKey = config["Cohere:ApiKey"];
-var siteId = "porlasfamilias";
+var siteId = "demo";
 
 if (string.IsNullOrEmpty(supabaseConnString) || string.IsNullOrEmpty(apiKey))
 {
