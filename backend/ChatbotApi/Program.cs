@@ -68,7 +68,7 @@ app.MapPost("/chat", async (ChatRequest req, IHttpClientFactory clientFactory, I
                 LIMIT 2";
 
             using var cmd = new NpgsqlCommand(sql, conn);
-            cmd.Parameters.AddWithValue("sid", req.SiteId ?? "porlasfamilias");
+            cmd.Parameters.AddWithValue("sid", req.SiteId);
             cmd.Parameters.AddWithValue("vec", queryVector);
 
             using var reader = await cmd.ExecuteReaderAsync();
