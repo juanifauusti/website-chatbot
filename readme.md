@@ -59,4 +59,8 @@ Permite responder preguntas utilizando contenido específico mediante búsqueda 
 Agregar el script del widget en el HTML:
 
 ```html
-<script src="https://website-chatbot-juana.vercel.app/chatbot.js"></script>
+<script 
+    src="https://website-chatbot-juana.vercel.app/chatbot.js" 
+    data-site-id="AQUÍ_VA_EL_ID_DEL_SITIO"
+    defer>
+</script>
