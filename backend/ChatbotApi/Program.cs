@@ -28,7 +28,7 @@ builder.Services.AddHttpClient("CohereClient", client =>
 
 var app = builder.Build();
 
-app.UseCors("MultiSitePoliciy");
+app.UseCors("MultiSitePolicy");
 
 app.MapPost("/chat", async (ChatRequest req, IHttpClientFactory clientFactory, IConfiguration config) =>
 {
